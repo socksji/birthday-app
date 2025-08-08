@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Safwani!</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      background: #FFF8F0;
+      padding-top: 50px;
+    }
+    .character {
+      font-size: 90px;
+      margin: 20px 0 10px 0;
+      animation: pop 0.5s;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.7);}
+      70% { transform: scale(1.15);}
+      100% { transform: scale(1);}
+    }
+    .message {
+      font-size: 2em;
+      font-weight: bold;
+      color: #ff69b4;
+      margin-bottom: 10px;
+    }
+    .quote {
+      font-size: 1.3em;
+      color: #333;
+      background: #f9e0ff;
+      padding: 15px 25px;
+      border-radius: 15px;
+      display: inline-block;
+      margin-top: 5px;
+    }
+    button, .whatsapp-link {
+      background: #ffe066;
+      color: #333;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.5em;
+      padding: 15px 40px;
+      cursor: pointer;
+      margin-top: 30px;
+      box-shadow: 2px 2px 8px #d9b2ff44;
+      transition: background 0.2s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    button:hover, .whatsapp-link:hover {
+      background: #ffd600;
+    }
+    .whatsapp-link {
+      background: #25D366;
+      color: white;
+      margin-top: 20px;
+      font-size: 1.2em;
+      padding: 12px 28px;
+      border-radius: 15px;
+      box-shadow: 2px 2px 8px #25d36655;
+    }
+    .whatsapp-link:hover {
+      background: #128c7e;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday, Safwani! 🎉</h1>
+  <div id="output"></div>
+  <button onclick="unlockCharacter()">Tekan Saya!</button>
+  <br>
+  <!-- WhatsApp link appears here -->
+  <a id="wa-link" class="whatsapp-link" href="#" target="_blank" style="display:none;">Kongsi di WhatsApp</a>
+
+  <script>
+    const characters = [
+      { emoji: "🐰", name: "Cik Arnab" },
+      { emoji: "🐱", name: "Encik Kucing" },
+      { emoji: "🦊", name: "Tuan Musang" },
+      { emoji: "🐻", name: "Puan Beruang" },
+      { emoji: "🦄", name: "Unicorn Ceria" },
+      { emoji: "🐼", name: "Si Panda" },
+      { emoji: "🐥", name: "Anak Itik" },
+      { emoji: "🧸", name: "Teddy Bear" }
+    ];
+
+    const quotes = [
+      "Semoga segala impianmu tercapai. You deserve all the best! 🌸",
+      "Setiap hari baru adalah peluang untuk lebih bahagia.",
+      "Happy birthday! Never forget how amazing you are!",
+      "Moga sentiasa ceria & dimurahkan rezeki. Amin!",
+      "Kejayaan bermula dengan senyuman pertama hari ini 😊",
+      "Stay awesome, Safwani! Dunia perlukan keceriaanmu.",
+      "Hari ini milikmu, jadi nikmatilah sepenuhnya!",
+      "Ingat, setiap cabaran adalah pintu ke kejayaan."
+    ];
+
+    let currentChar = '';
+    let currentQuote = '';
+
+    function unlockCharacter() {
+      const char = characters[Math.floor(Math.random() * characters.length)];
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      currentChar = char;
+      currentQuote = quote;
+      document.getElementById("output").innerHTML = `
+        <div class="character">${char.emoji}</div>
+        <div class="message">${char.name} kata: Happy Birthday Safwani!</div>
+        <div class="quote">${quote}</div>
+      `;
+      // Show WhatsApp link
+      const waMessage = encodeURIComponent(
+        `${char.emoji} ${char.name} kata: Happy Birthday Safwani!\n\n"${quote}"`
+      );
+      // Optionally, insert phone number after send/?phone=601XXXXXXXX
+      document.getElementById("wa-link").href = `https://wa.me/?text=${waMessage}`;
+      document.getElementById("wa-link").style.display = 'inline-block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Safwani!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      width: 100vw;
+      background: #ede6dc;
+    }
+    body {
+      font-family: 'Georgia', 'Comic Sans MS', cursive, serif;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 40px;
+      box-sizing: border-box;
+      background: linear-gradient(120deg, #ede6dc 75%, #c2b280 100%);
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      letter-spacing: 1px;
+      color: #61340c;
+      text-shadow: 1px 1px 2px #f3e4c7;
+    }
+    .character {
+      font-size: 7.5em;
+      margin: 30px 0 15px 0;
+      animation: pop 0.5s;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.7);}
+      70% { transform: scale(1.15);}
+      100% { transform: scale(1);}
+    }
+    .message {
+      font-size: 2em;
+      font-weight: bold;
+      color: #61340c;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .quote {
+      font-size: 1.15em;
+      color: #2d2012;
+      background: #f7e1be;
+      padding: 13px 16px;
+      border-radius: 15px;
+      display: inline-block;
+      margin-top: 8px;
+      max-width: 90vw;
+      box-sizing: border-box;
+      font-style: italic;
+      box-shadow: 0 0 6px #c2b28050;
+    }
+    button, .whatsapp-link {
+      background: #b2894d;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.4em;
+      padding: 16px 45px;
+      cursor: pointer;
+      margin-top: 28px;
+      box-shadow: 2px 2px 8px #a07522a1;
+      transition: background 0.2s;
+      display: inline-block;
+      text-decoration: none;
+      width: 90vw;
+      max-width: 350px;
+      min-width: 150px;
+    }
+    button:hover, .whatsapp-link:hover {
+      background: #61340c;
+      color: #ffe39a;
+    }
+    .whatsapp-link {
+      background: #25D366;
+      color: white;
+      margin-top: 20px;
+      font-size: 1.15em;
+      padding: 14px 36px;
+      border-radius: 15px;
+      box-shadow: 2px 2px 8px #25d36655;
+    }
+    .whatsapp-link:hover {
+      background: #128c7e;
+      color: #fff;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.25em;
+      }
+      .character {
+        font-size: 3.8em;
+      }
+      .message {
+        font-size: 1em;
+      }
+      .quote {
+        font-size: 1em;
+        padding: 9px 7px;
+      }
+      button, .whatsapp-link {
+        font-size: 1em;
+        padding: 11px 8vw;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday, Safwani! <span style="color:#61340c;">🦉🪄</span></h1>
+  <div id="output"></div>
+  <button id="btn" onclick="unlockCharacter()">Tekan Saya!</button>
+  <br>
+  <a id="wa-link" class="whatsapp-link" href="#" target="_blank" style="display:none;">Kongsi di WhatsApp</a>
+  <script>
+    const characters = [
+      { emoji: "⚡", name: "Harry Potter", line: "Wishing you a magical birthday, Safwani!" },
+      { emoji: "🦁", name: "Hermione Granger", line: "Happy birthday, Safwani! Wit beyond measure is man’s greatest treasure." },
+      { emoji: "🧙‍♂️", name: "Albus Dumbledore", line: "May your year be full of wonders, like the Room of Requirement." },
+      { emoji: "🦉", name: "Ron Weasley", line: "You’re a legend, Safwani! Hope your day’s as brilliant as a Chocolate Frog." },
+      { emoji: "🐍", name: "Severus Snape", line: "Happy birthday. Always remember your own power." },
+      { emoji: "🦄", name: "Luna Lovegood", line: "Happy birthday, Safwani! Keep believing in impossible things." },
+      { emoji: "🐉", name: "Draco Malfoy", line: "Happy birthday. Even a Slytherin wishes you the best (secretly)!" }
+    ];
+    const quotes = [
+      "Happiness can be found, even in the darkest of times, if one only remembers to turn on the light.",
+      "Working hard is important, but there is something that matters even more: believing in yourself.",
+      "It does not do to dwell on dreams and forget to live. Happy birthday, Safwani!",
+      "You are braver than you believe, stronger than you seem, and smarter than you think.",
+      "Don’t let the Muggles get you down!",
+      "The world isn’t split into good people and Death Eaters. Remember to spread kindness!",
+      "After all this time? Always.",
+      "Every great wizard started out as nothing more than what we are now—students. Happy learning!"
+    ];
+    function unlockCharacter() {
+      const char = characters[Math.floor(Math.random() * characters.length)];
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("output").innerHTML = `
+        <div class="character">${char.emoji}</div>
+        <div class="message">${char.name}: ${char.line}</div>
+        <div class="quote">${quote}</div>
+      `;
+      const waMessage = encodeURIComponent(
+        `${char.emoji} ${char.name} kata: ${char.line}\n\n"${quote}"`
+      );
+      document.getElementById("wa-link").href = `https://wa.me/?text=${waMessage}`;
+      document.getElementById("wa-link").style.display = 'inline-block';
+    }
+  </script>
+</body>
+</html>
